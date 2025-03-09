@@ -1,0 +1,206 @@
+@forward "./reset";
+@use "./abstract" as *;
+
+// *** General ***
+html {
+	@media (max-width: 1320px) {
+		font-size: 55%;
+	}
+}
+
+body {
+	background-color: $color-bg;
+	background: linear-gradient(
+			to right,
+			$color-gradient-dark1,
+			$color-gradient-dark2
+		),
+		url("../img/su-san-lee-g3PyXO4A0yc-unsplash.jpg") no-repeat center
+			center;
+	background-size: cover;
+
+	font-family: "Open Sans", serif;
+
+	overflow: hidden;
+
+	@include dimension-settings(100%, null, 100vh);
+	@include flex-center;
+
+	@media (max-width: 1160px) {
+		@include dimension-settings(100%, null, auto);
+		overflow-y: auto;
+		margin: 4rem 0;
+	}
+
+	@media (max-width: 800px) {
+		@include dimension-settings(100%, null, auto);
+	}
+}
+
+#root {
+	@include dimension-settings(100%, 144rem);
+	@include flex-center;
+}
+
+// *** Container and Main Heading ***
+.animals {
+	@include dimension-settings(100%, 130rem);
+	@include flex-center;
+
+	flex-direction: column;
+	gap: 9rem;
+
+	&__wrapper {
+		@include flex-center;
+		gap: 5rem;
+
+		@media (max-width: 1160px) {
+			flex-wrap: wrap;
+			margin: 0 2rem;
+		}
+	}
+
+	.heading__primary {
+		color: $color-primary;
+
+		font-size: clamp(5rem, 8cqi, 7rem);
+		letter-spacing: 0.1rem;
+
+		@extend %text-shadow-placeholder;
+
+		&-span {
+			display: inline-block;
+		}
+
+		&-span:nth-of-type(5) {
+			margin-left: 2.5rem;
+		}
+	}
+}
+
+// *** Animal Cards ***
+.animal {
+	@include dimension-settings(100%, 40rem);
+	@include flex-center;
+	position: relative;
+
+	flex-direction: column;
+	gap: 5rem;
+
+	padding: 2rem;
+
+	box-shadow: 0.1rem 0.1rem 1rem $color-primary;
+
+	visibility: hidden;
+	opacity: 0;
+
+	animation: fadeInSlide 0.5s ease-out forwards;
+
+	&:nth-of-type(1) {
+		animation-delay: 3.5s;
+	}
+
+	&:nth-of-type(2) {
+		animation-delay: 4s;
+	}
+
+	&:nth-of-type(3) {
+		animation-delay: 4.5s;
+	}
+
+	.animal__overlay.active {
+		animation: fadeInBackground 0.5s linear forwards;
+	}
+
+	&__overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 50;
+
+		@include flex-center;
+		@include dimension-settings(100%, null, 100%);
+
+		opacity: 1;
+		visibility: visible;
+
+		transition: all 0.5s;
+		transition-delay: 0.5s;
+
+		background-color: $color-overlay;
+
+		.animal__title--overlay {
+			color: $color-white;
+
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	.animal__title--overlay.active {
+		color: transparent;
+
+		opacity: 0;
+		visibility: hidden;
+		transition-delay: 0.55s;
+
+		z-index: 0;
+	}
+
+	&__title {
+		color: $color-primary;
+		font: {
+			size: 5rem;
+			weight: 700;
+		}
+
+		@extend %text-shadow-placeholder;
+	}
+
+	&__description {
+		color: $color-white;
+
+		font-size: 1.2rem;
+		line-height: 1.9;
+
+		text: {
+			transform: uppercase;
+			align: center;
+		}
+
+		opacity: 0.7;
+	}
+
+	&__img {
+		@include dimension-settings(20rem, null, 20rem);
+
+		border-radius: 50%;
+		box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+
+		object-fit: cover;
+		cursor: pointer;
+	}
+
+	&__btn {
+		&:link,
+		&:visited {
+			font: {
+				size: 2rem;
+				weight: 700;
+			}
+
+			color: $color-white;
+			background-color: $color-primary;
+			border-radius: 0.6rem;
+
+			padding: 1.5rem 3rem;
+
+			cursor: pointer;
+		}
+
+		&:hover,
+		&:active {
+			animation: shake 0.2s linear 1;
+		}
+	}
+}

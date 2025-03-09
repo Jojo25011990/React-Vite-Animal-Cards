@@ -1,0 +1,47 @@
+@use "./mixins" as *;
+
+// *** Card ***
+@keyframes fadeInSlide {
+	0% {
+		transform: translateY(10rem);
+	}
+
+	100% {
+		visibility: visible;
+		opacity: 1;
+
+		transform: translateY(0);
+	}
+}
+
+// *** Overlay Card ***
+@keyframes fadeInBackground {
+	to {
+		@include dimension-settings(31rem, null, 6rem);
+
+		top: 3%;
+		left: 50%;
+		transform: translateX(-50%);
+		background-color: transparent;
+	}
+}
+
+// *** Button ***
+@keyframes shake {
+	0%,
+	100% {
+		transform: translateX(-0.7rem);
+	}
+
+	25% {
+		transform: translateX(0.7rem);
+	}
+
+	45% {
+		transform: translateX(-0.7rem);
+	}
+
+	65% {
+		transform: translateX(0.7rem);
+	}
+}
