@@ -1,4 +1,4 @@
-# CSS Art Google Logo
+# React Animal Cards
 
 -   Beautiful Animal Cards + Animations && Effects.
 -   Vite + React + Gsap + Css Keyframes Animations.
